@@ -14,12 +14,16 @@ public class RedTrack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public Vector3 GetRedTrackPosition()
     {
-        Debug.Log(": "+this.gameObject.transform.position);
         return this.gameObject.transform.position;
     }
+
+    public Vector3 GetRedTrackRotation()
+    {
+        return this.gameObject.transform.eulerAngles;
+    }
+
 }

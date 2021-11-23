@@ -15,9 +15,13 @@ public class BlueTrack : MonoBehaviour
     {
         
     }
-
-    public Transform GetBlueTrackTransform()
+    public Vector3 GetBlueTrackPosition()
     {
-        return transform;
+        return this.gameObject.transform.position;
+    }
+
+    public Vector3 GetBlueTrackRotation()
+    {
+        return this.gameObject.transform.eulerAngles;
     }
 }

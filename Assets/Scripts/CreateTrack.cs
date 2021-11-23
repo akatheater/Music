@@ -6,25 +6,38 @@ public class CreateTrack : MonoBehaviour
 {
     public GameObject redTrack;
     public GameObject blueTrack;
-    public GameObject musicTrack;
+    public GameObject redMusicTrack;
+    public GameObject blueMusicTrack;
 
-    public RedTrack rc;
-    public Vector3 rcPosition;
+    public RedTrack rt;
+    public Vector3 rtPosition;
+    public Vector3 rtRotation;
+
+    public BlueTrack bt;
+    public Vector3 btPosition;
+    public Vector3 btRotation;
 
     private enum PlayerTurn { red, blue };
-
-    //public BasicItemController bic;
 
     // Start is called before the first frame update
     void Start()
     {
-        rcPosition = rc.GetRedTrackPosition();
+        rtPosition = rt.GetRedTrackPosition();
+        rtRotation = rt.GetRedTrackRotation();
+
+        btPosition = bt.GetBlueTrackPosition();
+        btRotation = bt.GetBlueTrackRotation();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //rcTransform = rc.GetRedTrackTransform();
+        rtPosition = rt.GetRedTrackPosition();
+        rtRotation = rt.GetRedTrackRotation();
+
+        btPosition = bt.GetBlueTrackPosition();
+        btRotation = bt.GetBlueTrackRotation();
     }
 
     //存入乐句
@@ -67,9 +80,7 @@ public class CreateTrack : MonoBehaviour
             {
                 if (music[i, j] == 1)
                 {
-                    //【如果需要修改坐标公式改这】
-                    //musicQueue[k].Enqueue(new Vector3(j - 3.5f + rcPosition.x, rcPosition.y, 0f)); 
-                    musicQueue[k].Enqueue(new Vector3(j - 4.0f, 0f, 0f));
+                    musicQueue[k].Enqueue(new Vector3(j - 3.5f, 0f, 0f));
                 }
             }
             k++;
@@ -92,35 +103,25 @@ public class CreateTrack : MonoBehaviour
 
     public void CreateCurrentTrack(int currentMusic , int currentTurn)
     {
-        //Object trackPrefab = Resources.Load("Prefabs/RedTrack");
-        //if(trackPrefab!=null)
-        //{
-        //    GameObject redTrack = Instantiate(trackPrefab,trackTransform(), Quaternion.identity) as GameObject;          
-        //}
 
         Vector3[] v3=TrackTransform(currentMusic);
         foreach(Vector3 v in v3)
         {
-            //if(currentTurn==(int)PlayerTurn.red)
-            //{
-            //    GameObject ob = Instantiate(redTrack, v, Quaternion.identity);
-            //    ob.transform.parent = musicTrack.transform;
-            //}
-
             if (currentTurn == (int)PlayerTurn.red)
             {
-                GameObject ob = Instantiate(redTrack, v, Quaternion.identity);
-                ob.transform.parent = musicTrack.transform;
+                GameObject ob = Instantiate(redTrack, Vector3.zero, Quaternion.identity);
+                ob.transform.parent = redMusicTrack.transform;
+                ob.transform.localPosition = v;
+                ob.transform.localEulerAngles = Vector3.zero;
+  
             }
-            //else if(currentTurn==(int)PlayerTurn.blue)
-            //{
-            //    GameObject ob = Instantiate(blueTrack, v, Quaternion.identity);
-            //    ob.transform.parent = musicTrack.transform;
-            //}
-
-            //hudCamera.transform.SetParent(hudSelectedObject.transform);
-            //hudCamera.transform.localScale = Vector3.one;
-            //hudCamera.transform.localPosition = Vector3.zero; // Or desired position
+            else if (currentTurn == (int)PlayerTurn.blue)
+            {
+                GameObject ob = Instantiate(blueTrack, Vector3.zero, Quaternion.identity);
+                ob.transform.parent = blueMusicTrack.transform;
+                ob.transform.localPosition = v;
+                ob.transform.localEulerAngles = Vector3.zero;
+            }
         }
 
     }
@@ -138,6 +139,5 @@ public class CreateTrack : MonoBehaviour
 
 
     //选做：轨道预览与动态消失
-
 
 }

@@ -85,7 +85,15 @@ public class GameManager : MonoBehaviour
 
         if(startPlaying && !gameOver)
         {
-            bsc.RedStartScroll();
+            if (currentTurn == (int)PlayerTurn.red)
+            {
+                bsc.RedStartScroll();
+            }
+            else if (currentTurn == (int)PlayerTurn.blue)
+            {
+                bsc.BlueStartScroll();
+            }
+            
             StartCreateTrack();
         }
 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{EB5CDDD1-65C8-E756-356E-A12B29310B4A}</ProjectGuid>
+    <ProjectGuid>{20B31ADE-9EDF-608A-355C-154A4B3AE478}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,6 +53,7 @@
     <UnityVersion>2020.3.21f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\RedTrack.cs" />
     <Compile Include="Assets\Scripts\BeatScrollerController.cs" />
     <Compile Include="Assets\Scripts\StairTopCollision.cs" />
     <Compile Include="Assets\Scripts\PlayerCollision.cs" />
@@ -63,7 +64,6 @@
     <Compile Include="Assets\Scripts\BasicButtonController.cs" />
     <Compile Include="Assets\Scripts\StairBottomCollision.cs" />
     <Compile Include="Assets\Scripts\BasicPlayerController.cs" />
-    <Compile Include="Assets\Scripts\RedTrack.cs" />
     <Compile Include="Assets\Scripts\BlueTrack.cs" />
   </ItemGroup>
   <ItemGroup>
