@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     public bool btnIsEnterTrigger; //btn进入track
 
+    public bool btnHasReturn;
+
     private enum PlayerTurn { red,blue };
     public int currentTurn;
 
@@ -57,6 +59,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         btnIsEnterTrigger = bbc.GetEnterTrackTrigger();
+        if(currentTurn==(int)PlayerTurn.red)
+        {
+            btnHasReturn = bsc.RedBtnHasReturn();
+        }
+        if (currentTurn == (int)PlayerTurn.blue)
+        {
+            btnHasReturn = bsc.BlueBtnHasReturn();
+        }
 
         PlayerMove();
         PlayerAttack();
@@ -87,11 +97,11 @@ public class GameManager : MonoBehaviour
         {
             if (currentTurn == (int)PlayerTurn.red)
             {
-                bsc.RedStartScroll();
+                bsc.RedStartScroll((int)PlayerTurn.blue);
             }
             else if (currentTurn == (int)PlayerTurn.blue)
             {
-                bsc.BlueStartScroll();
+                bsc.BlueStartScroll((int)PlayerTurn.red);
             }
             
             StartCreateTrack();
@@ -126,7 +136,7 @@ public class GameManager : MonoBehaviour
             //选做
             //可能Tempo会改变
             float beatTempo = bsc.GetBeatTempo();
-            if(bsc.RedBtnHasReturn())
+            if(btnHasReturn)
             {
                 ct.DeleteTrack();
                 currentMusic++;
@@ -143,7 +153,7 @@ public class GameManager : MonoBehaviour
                     }
                     ct.CreateCurrentTrack(currentMusic,currentTurn);
                     bsc.SetRedBtnReturn(false);
-
+                    bsc.SetBlueBtnReturn(false);
                 }
             }
         }

@@ -26,12 +26,10 @@ public class BeatScrollerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rtPosition = rt.GetRedTrackPosition();
-        rtRotation = rt.GetRedTrackRotation();
-
         redBtnIniPosition = new Vector3(-4.0f, 0, 0);
         blueBtnIniPosition = new Vector3(-4.0f, 0, 0);
 
+        transform.SetParent(redTrack.transform);
         transform.localPosition = redBtnIniPosition;
         transform.localEulerAngles = Vector3.zero;
 
@@ -43,42 +41,53 @@ public class BeatScrollerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rtPosition = rt.GetRedTrackPosition();
-        rtRotation = rt.GetRedTrackRotation();
         transform.localEulerAngles = Vector3.zero;
     }
 
-    public void RedStartScroll()
+    public void RedStartScroll(int nextTurn)
     {
+        transform.SetParent(redTrack.transform);
         transform.Translate(beatTempo * Time.deltaTime, 0, 0);
         //【如果到尽头了就回到第一个dot】
         if (transform.localPosition.x >= 4.0f)
         {
-            transform.localPosition = redBtnIniPosition;
-            redBtnHasReturn = true;
+            if (nextTurn == (int)PlayerTurn.red)
+            {
+                transform.localPosition = redBtnIniPosition;
+                redBtnHasReturn = true;
+                //Debug.Log("red btn has return!");
+            }
+            if (nextTurn == (int)PlayerTurn.blue)
+            {
+                transform.SetParent(blueTrack.transform);
+                transform.localPosition = blueBtnIniPosition;
+                redBtnHasReturn = true;
+                //Debug.Log("red btn has return!");
+            }
+
         }
     }
 
-    public void BlueStartScroll()
+    public void BlueStartScroll(int nextTurn)
     {
+        transform.SetParent(blueTrack.transform);
         transform.Translate(beatTempo * Time.deltaTime, 0, 0);
         //【如果到尽头了就回到第一个dot】
         if (transform.localPosition.x >= 4.0f)
         {
-            transform.localPosition = blueBtnIniPosition;
-            blueBtnHasReturn = true;
-        }
-    }
-
-
-    public void InitiateCurrentBtn(int currentTurn)
-    {
-        if(currentTurn==(int)PlayerTurn.red)
-        {
-            //transform.parent=
-        }
-        if (currentTurn == (int)PlayerTurn.blue)
-        {
+            if (nextTurn == (int)PlayerTurn.blue)
+            {
+                transform.localPosition = blueBtnIniPosition;
+                blueBtnHasReturn = true;
+                //Debug.Log("red btn has return!");
+            }
+            if (nextTurn == (int)PlayerTurn.red)
+            {
+                transform.SetParent(redTrack.transform);
+                transform.localPosition = redBtnIniPosition;
+                blueBtnHasReturn = true;
+                //Debug.Log("red btn has return!");
+            }          
 
         }
     }
@@ -96,6 +105,16 @@ public class BeatScrollerController : MonoBehaviour
     public void SetRedBtnReturn(bool set)
     {
         redBtnHasReturn = set;
+    }
+
+    public bool BlueBtnHasReturn()
+    {
+        return blueBtnHasReturn;
+    }
+
+    public void SetBlueBtnReturn(bool set)
+    {
+        blueBtnHasReturn = set;
     }
 
 }

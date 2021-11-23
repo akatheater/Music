@@ -44,14 +44,20 @@ public class CreateTrack : MonoBehaviour
     int[,] RecordMusicCanon()
     {
         //【如果需要修改乐句改这】
-        int[,] canon = new int[6, 8]
+        int[,] canon = new int[12, 8]
         {
-            {1,0,1,0,1,0,0,0},
-            {1,0,1,0,1,0,0,0},
-            {1,0,1,0,1,0,1,0},
-            {1,0,1,0,1,0,1,0},
-            {1,0,1,0,1,1,1,0},
-            {1,0,1,0,1,1,1,0}
+            {0,0,1,0,0,0,1,0},
+            {0,0,1,0,0,0,1,0},
+            {0,0,1,0,0,0,1,0},
+            {0,0,1,0,0,0,1,0},
+            {0,0,1,0,0,0,1,0},
+            {0,0,1,0,0,0,1,0},
+            {0,0,1,0,1,0,1,0},
+            {0,0,1,0,1,0,1,0},
+            {0,0,1,0,1,0,1,0},
+            {0,0,1,0,1,0,1,0},
+            {0,0,1,0,1,0,1,0},
+            {0,0,1,0,1,0,1,0}
         };
         return canon;
     }
@@ -128,7 +134,6 @@ public class CreateTrack : MonoBehaviour
 
     public void DeleteTrack()
     {
-        //bic.DestroyMyself(); //TODO：要改，根据tag或者别的什么删，因为item会有很多种
         GameObject[] lastTrack = GameObject.FindGameObjectsWithTag("Track");
         foreach(GameObject ob in lastTrack)
         {
