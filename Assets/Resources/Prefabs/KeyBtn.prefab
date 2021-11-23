@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -728531475
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 02d93d18d15ad604286df8d09deddfd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -99,9 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5f5e32c5c39bf48a0a9e191f8d928a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultImg: {fileID: 21300000, guid: 02d93d18d15ad604286df8d09deddfd2, type: 3}
-  pressedImg: {fileID: 21300000, guid: 832f2f8b7d135ad4297a1797ab8c6ced, type: 3}
-  successImg: {fileID: 21300000, guid: 5189eeed23c851146b1c71a51ea292b4, type: 3}
   enterTrackTrigger: 0
   keyLeftArrow: 276
   keyRightArrow: 275
@@ -156,9 +153,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aace7f85266db5a44beb80abd2870aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redTrack: {fileID: 0}
+  blueTrack: {fileID: 0}
   beatTempo: 112.5
+  redBtnIniPosition: {x: 0, y: 0, z: 0}
+  blueBtnIniPosition: {x: 0, y: 0, z: 0}
   hasStarted: 0
-  btnHasReturn: 0
+  redBtnHasReturn: 0
+  blueBtnHasReturn: 0
+  rt: {fileID: 0}
+  rtPosition: {x: 0, y: 0, z: 0}
+  rtRotation: {x: 0, y: 0, z: 0}
+  bt: {fileID: 0}
 --- !u!95 &6411503906789758807
 Animator:
   serializedVersion: 3

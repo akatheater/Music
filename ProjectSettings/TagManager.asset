@@ -8,6 +8,7 @@ TagManager:
   - CanBeDamaged
   - StairTop
   - StairBottom
+  - ground
   layers:
   - Default
   - TransparentFX
