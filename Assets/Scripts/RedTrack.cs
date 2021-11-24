@@ -7,18 +7,32 @@ public class RedTrack : MonoBehaviour
     public GameObject leftPoint;
     public GameObject rightPoint;
 
-    public bool rotating;
+    public bool rotateAroundLeft;
+    public bool rotateAroundRight;
     public float speed;
+
+    public bool leftOnGround;
+    public bool rightOnGround;
+
+    private SpriteRenderer thisSR;
+    //public Sprite trackBgImg;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        thisSR = GetComponent<SpriteRenderer>();
+
+        rotateAroundLeft = false;
+        rotateAroundRight = false;
+
+        leftOnGround = false;
+        rightOnGround = false;
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {    
+        RotateAroundLeft();
         RotateAroundRight();
     }
 
@@ -34,7 +48,7 @@ public class RedTrack : MonoBehaviour
 
     public void RotateAroundLeft()
     {
-        if(rotating)
+        if(rotateAroundLeft && !rightOnGround)
         {
             transform.RotateAround(leftPoint.transform.position,Vector3.back, speed*Time.deltaTime);
         }
@@ -42,7 +56,7 @@ public class RedTrack : MonoBehaviour
 
     public void RotateAroundRight()
     {
-        if (rotating)
+        if (rotateAroundRight && !leftOnGround)
         {
             transform.RotateAround(rightPoint.transform.position, Vector3.forward, speed * Time.deltaTime);
         }
@@ -50,21 +64,36 @@ public class RedTrack : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision:" + collision.transform.name);
+        //Debug.Log("collision:" + collision.transform.name);
         if (collision.transform.tag == "ground")
         {
-            rotating = false;
+            if(rotateAroundLeft)
+            {
+                rotateAroundLeft = false;
+                rightOnGround = true;
+            }
+            if(rotateAroundRight)
+            {
+                rotateAroundRight = false;
+                leftOnGround = true;
+            }
+            
         }
     }
 
-    public void SetRotating(bool rotate)
+    public void SetRotateAroundLeft(bool rotate)
     {
-        rotating = rotate;
+        rotateAroundLeft = rotate;
     }
 
-    private void OnMouseDown()
+    public void SetRotateAroundRight(bool rotate)
     {
-        rotating = true;
+        rotateAroundRight = rotate;
+    }
+
+    public void SetTrackBgImgDefault()
+    {
+        thisSR.sprite = default;
     }
 
 }

@@ -24,6 +24,9 @@ public class BasicPlayerController : MonoBehaviour
     GameObject bottomStair;
     GameObject topStair;
 
+    public RedTrack rt;
+    public BlueTrack bt;
+
     public Animator playerAnim;
 
     // Start is called before the first frame update
@@ -106,6 +109,43 @@ public class BasicPlayerController : MonoBehaviour
                 pc.GetRightStairBottom().transform.GetComponent<BasicItemController>().DestroyMyself();
                 shakeCamera.StartShake();
             }
+            if (pc.RedLeftRopeRight())
+            {
+                pc.GetRedLeftRope().transform.GetComponent<BasicItemController>().DestroyMyself();
+                rt.SetRotateAroundRight(true);
+                shakeCamera.StartShake();
+            }
+            if (pc.RedRightRopeRight())
+            {
+                pc.GetRedRightRope().transform.GetComponent<BasicItemController>().DestroyMyself();
+                rt.SetRotateAroundLeft(true);
+                shakeCamera.StartShake();
+            }
+            if (pc.BlueLeftRopeRight())
+            {
+                pc.GetBlueLeftRope().transform.GetComponent<BasicItemController>().DestroyMyself();
+                bt.SetRotateAroundRight(true);
+                shakeCamera.StartShake();
+            }
+            if (pc.BlueRightRopeRight())
+            {
+                pc.GetBlueRightRope().transform.GetComponent<BasicItemController>().DestroyMyself();
+                bt.SetRotateAroundLeft(true);
+                shakeCamera.StartShake();
+            }
+            if (pc.RedTrackRight())
+            {
+                //Debug.Log("redTrackRight!!");
+                rt.SetTrackBgImgDefault();
+                shakeCamera.StartShake();
+            }
+            if (pc.BlueTrackRight())
+            {
+                //Debug.Log("redTrackRight!!");
+                bt.SetTrackBgImgDefault();
+                shakeCamera.StartShake();
+            }
+
         }
         if (transform.localScale.x == -1)//Ãæ³¯×ó
         {
@@ -117,6 +157,42 @@ public class BasicPlayerController : MonoBehaviour
             if (pc.StairBottomLeft())
             {
                 pc.GetLeftStairBottom().transform.GetComponent<BasicItemController>().DestroyMyself();
+                shakeCamera.StartShake();
+            }
+            if(pc.RedLeftRopeLeft())
+            {
+                pc.GetRedLeftRope().transform.GetComponent<BasicItemController>().DestroyMyself();
+                rt.SetRotateAroundRight(true);
+                shakeCamera.StartShake();
+            }
+            if (pc.RedRightRopeLeft())
+            {
+                pc.GetRedRightRope().transform.GetComponent<BasicItemController>().DestroyMyself();
+                rt.SetRotateAroundLeft(true);
+                shakeCamera.StartShake();
+            }
+            if (pc.BlueLeftRopeLeft())
+            {
+                pc.GetBlueLeftRope().transform.GetComponent<BasicItemController>().DestroyMyself();
+                bt.SetRotateAroundRight(true);
+                shakeCamera.StartShake();
+            }
+            if (pc.BlueRightRopeLeft())
+            {
+                pc.GetBlueRightRope().transform.GetComponent<BasicItemController>().DestroyMyself();
+                bt.SetRotateAroundLeft(true);
+                shakeCamera.StartShake();
+            }
+            if(pc.RedTrackLeft())
+            {
+                //Debug.Log("redTrackLeft!!");
+                rt.SetTrackBgImgDefault();
+                shakeCamera.StartShake();
+            }
+            if (pc.BlueTrackLeft())
+            {
+                //Debug.Log("redTrackLeft!!");
+                bt.SetTrackBgImgDefault();
                 shakeCamera.StartShake();
             }
         }
