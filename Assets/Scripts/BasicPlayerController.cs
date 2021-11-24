@@ -145,6 +145,11 @@ public class BasicPlayerController : MonoBehaviour
                 bt.SetTrackBgImgDefault();
                 shakeCamera.StartShake();
             }
+            if (pc.WallRight())
+            {
+                pc.GetWall().transform.GetComponent<BasicItemController>().DestroyMyself();
+                shakeCamera.StartShake();
+            }
 
         }
         if (transform.localScale.x == -1)//Ãæ³¯×ó
@@ -193,6 +198,11 @@ public class BasicPlayerController : MonoBehaviour
             {
                 //Debug.Log("redTrackLeft!!");
                 bt.SetTrackBgImgDefault();
+                shakeCamera.StartShake();
+            }
+            if (pc.WallLeft())
+            {
+                pc.GetWall().transform.GetComponent<BasicItemController>().DestroyMyself();
                 shakeCamera.StartShake();
             }
         }

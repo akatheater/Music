@@ -35,7 +35,6 @@ public class ShakeCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("shakeTime= " + shakeTime);
         if (isshakeCamera)
         {
             if (shakeTime > 0)
@@ -43,7 +42,6 @@ public class ShakeCamera : MonoBehaviour
                 shakeTime -= Time.deltaTime;
                 if (shakeTime <= 0)
                 {
-                    //enabled = false;
                     StopShake();
                 }
                 else

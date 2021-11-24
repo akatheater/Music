@@ -18,6 +18,7 @@ public class PlayerCollision : MonoBehaviour
     GameObject blueRightRope;
     GameObject redTrack;
     GameObject blueTrack;
+    GameObject wall;
 
 
 
@@ -522,5 +523,62 @@ public class PlayerCollision : MonoBehaviour
     public GameObject GetBlueTrack()
     {
         return blueTrack;
+    }
+
+
+    //打墙
+    public bool WallLeft()
+    {
+        bool isLeft = false;
+        Ray2D rightLine = new Ray2D(transform.position, Vector2.left);
+        RaycastHit2D hit = Physics2D.Raycast(rightLine.origin, rightLine.direction, 1f);
+        if (hit.collider != null)
+        {
+            if (hit.transform.gameObject.name == "Wall")
+            {
+                //Debug.Log("检测到" + hit.transform.gameObject.tag);
+                wall = hit.transform.gameObject;
+                isLeft = true;
+            }
+            else
+            {
+                Debug.Log("检测到" + hit.transform.gameObject.tag);
+            }
+        }
+        else
+        {
+            Debug.Log("没有碰撞任何对象");
+        }
+        return isLeft;
+    }
+
+    public bool WallRight()
+    {
+        bool isLeft = false;
+        Ray2D rightLine = new Ray2D(transform.position, Vector2.right);
+        RaycastHit2D hit = Physics2D.Raycast(rightLine.origin, rightLine.direction, 1f);
+        if (hit.collider != null)
+        {
+            if (hit.transform.gameObject.name == "Wall")
+            {
+                //Debug.Log("检测到" + hit.transform.gameObject.tag);
+                wall = hit.transform.gameObject;
+                isLeft = true;
+            }
+            else
+            {
+                Debug.Log("检测到" + hit.transform.gameObject.tag);
+            }
+        }
+        else
+        {
+            Debug.Log("没有碰撞任何对象");
+        }
+        return isLeft;
+    }
+
+    public GameObject GetWall()
+    {
+        return wall;
     }
 }
